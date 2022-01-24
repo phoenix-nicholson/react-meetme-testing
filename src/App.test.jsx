@@ -2,15 +2,15 @@ import { screen, render, waitForElementToBeRemoved } from '@testing-library/reac
 import userEvent from '@testing-library/user-event'
 import App from './App'
 
-test('Should render the header', () => {
+test('Should render the header', async () => {
   render(<App />)
 
-  const heading = screen.getByRole('heading', {
-    name: /Alchemy Logo/i,
-  })
-
-  const logo = screen.getByAltText(/Alchemy Logo/i)
-
-  expect(heading).toBeInTheDocument()
+  const logo = screen.getByAltText(/alchemy logo/i)
   expect(logo).toBeInTheDocument()
+
+  const meet = screen.getByText(/meet /i)
+  expect(meet).toBeInTheDocument()
+
+  const name = await screen.findByText(/Vonta/i)
+  expect(name).toBeInTheDocument()
 })
